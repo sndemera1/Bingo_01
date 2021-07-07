@@ -1,0 +1,101 @@
+# Abi
+
+import random
+
+random_draw_list = random.sample(range(1, 76), 75)
+
+def generate_card():
+    """
+    Generates a bingo card and stores the numbers in a dictionary.
+    """
+    card = {
+        "B": [],
+        "I": [],
+        "N": [],
+        "G": [],
+        "O": [],
+    }
+    min = 1
+    max = 15
+    for letter in card:
+        card[letter] = random.sample(range(min, max), 5)
+        min += 15
+        max += 15
+        if letter == "N":
+            card[letter][2] = "Z" # zero in the middle 
+    return card
+
+def print_card(card): # use an arguments
+   
+    for letter in card:
+        print(letter, end="\t")
+        for number in card[letter]:
+            print(number, end="\t")
+        print("\n")
+    print("\n")
+
+def draw(card, list):# first use list and than use pop method to avoid duplicates 
+ 
+    number_drawn = random_draw_list.pop()
+    for letter in card:
+        i = 0
+        for number in card[letter]:
+            if number == number_drawn:
+                card[letter][i] = "Z"
+            i += 1
+    return number_drawn
+
+def check_win(card): # To check the winer card use arguments [ if and else ]
+   
+    win = False
+    if card["B"][0] == "Z" and card["I"][1] == "Z" and card["N"][2] == "Z" and card["G"][3] == "Z" and card["O"][4] == "Z":
+        win = True
+    elif card["O"][0] == "Z" and card["G"][1] == "Z" and card["N"][2] == "Z" and card["I"][3] == "Z" and card["B"][4] == "Z":
+        win = True
+    elif card["B"][0] == "Z" and card["O"][4] == "Z" and card["B"][4] == "Z" and card["O"][0] == "Z":
+        win = True
+        
+    for letter in card:
+        if(len(set(card[letter]))==1):
+            win = True
+    for i in range(5):
+        cnt = 0
+        for letter in card:
+            if card[letter][i] == "Z":
+                cnt += 1
+        print(cnt)
+        if cnt == 5:
+            win = True
+            break
+    return win
+
+def main():
+   
+    print("Bingo Time!")
+    card = generate_card()
+
+    print("\nHere is your card:\n")
+    print_card(card)
+
+    print("\nKeep pressing enter to continue or type quit to exit.\n")
+    user_input = input()
+    win = check_win(card)
+    balls_till_win = 0
+
+    while win == False and user_input != "I'M done":
+        number_drawn = draw(card, random_draw_list)
+        balls_till_win += 1
+
+        print(f"\nNumber drawn: {number_drawn}.")
+        print(f"Total balls drawn: {balls_till_win}.\n")
+        print_card(card)
+
+        win = check_win(card)
+
+
+        user_input = input()
+    if win == True:
+        print(f"\nBingo! Total balls to win: {balls_till_win}.")
+    else:
+        print("Game Over!")
+main()
