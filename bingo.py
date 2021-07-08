@@ -62,10 +62,29 @@ for i in call:
 f.close()
 
 fr = open("sample.txt", "r")
-card = []
-for num in fr.read().split():
-    card.append(int(num))
+card = [[], [], [], [], []]
+num = []
+callList = []
+
+for i in fr.read().split():
+    num.append(int(i))
+
+
+def makeCard(x, y, z):
+    for i in range(x, y):
+        card[z].append(num[i])
+
+
+makeCard(0, 5, 0)
+makeCard(5, 10, 1)
+makeCard(10, 15, 2)
+makeCard(15, 20, 3)
+makeCard(20, 25, 4)
+
+for i in range(25, 100):
+    callList.append(num[i])
 
 print(card)
+print(callList)
 
 fr.close()
