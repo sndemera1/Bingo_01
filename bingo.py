@@ -61,9 +61,11 @@ for i in call:
 
 f.close()
 
-#fr = file("sample.txt").read()
+fr = open("sample.txt", "r")
+card = []
+for num in fr.read().split():
+    card.append(int(num))
 
-#for num in fr.split():
-    #print(num)
+print(card)
 
-#fr.close()
+fr.close()
