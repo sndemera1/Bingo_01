@@ -84,7 +84,89 @@ makeCard(20, 25, 4)
 for i in range(25, 100):
     callList.append(num[i])
 
-print(card)
-print(callList)
+def playGame(card, callList):
+    result = []
+    for i in callList:
+        for x in range(0, 5):
+            for y in range(0, 5):
+                if card[x][y] == i:
+                    result.append(i)
+    ans1 = []
+    ans2 = []
+    ans3 = []
+    ans4 = []
+    ans5 = []
+    ans6 = []
+    ans7 = []
+    ans8 = []
+    ans9 = []
+    ans10 = []
+    ans11 = []
+    ans12 = []
+    ans13 = []
+    for w in result:
+        y = 4
+        z = 0
+        for x in range(0, 5):
+            if card[0][x] == w:
+                ans1.append(card[0][x])
+                if len(ans1) == 5:
+                    return ans1[4]
+            if card[1][x] == w:
+                ans2.append(card[1][x])
+                if len(ans2) == 5:
+                    return ans2[4]
+            if card[2][x] == w:
+                ans3.append(card[2][x])
+                if len(ans3) == 4:
+                    return ans3[3]
+            if card[3][x] == w:
+                ans4.append(card[3][x])
+                if len(ans4) == 5:
+                    return ans4[4]
+            if card[4][x] == w:
+                ans5.append(card[4][x])
+                if len(ans5) == 5:
+                    return ans5[4]
+            if card[x][0] == w:
+                ans6.append(card[x][0])
+                if len(ans6) == 5:
+                    return ans6[4]
+            if card[x][1] == w:
+                ans7.append(card[x][1])
+                if len(ans7) == 5:
+                    return ans7[4]
+            if card[x][2] == w:
+                ans8.append(card[x][2])
+                if len(ans8) == 4:
+                    return ans8[3]
+            if card[x][3] == w:
+                ans9.append(card[x][3])
+                if len(ans9) == 5:
+                    return ans9[4]
+            if card[x][4] == w:
+                ans10.append(card[x][4])
+                if len(ans10) == 5:
+                    return ans10[4]
+            if card[x][x] == w:
+                ans11.append(card[x][x])
+                if len(ans11) == 4:
+                    return ans11[3]
+            if card[x][y] == w:
+                ans12.append(card[x][y])
+                if len(ans12) == 4:
+                    return ans12[3]
+            if x % 4 == 0 and z % 4 == 0 or x % 4 == 0 and y % 4 == 0:
+                if card[x][z] == w:
+                    ans13.append(card[x][z])
+                elif card[x][y] == w:
+                    ans13.append(card[x][y])
+                    if len(ans13) == 4:
+                        return ans13[3]
+            y -= 1
+            z += 1
+
+
+playGame(card, callList)
 
 fr.close()
