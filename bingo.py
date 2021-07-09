@@ -1,5 +1,5 @@
 import random
-
+#Siyayi
 #initiating each bingo column
 B = []
 I = []
