@@ -86,6 +86,7 @@ for i in range(25, 100):
     callList.append(num[i])
 #function goes through all numbers in call list, if the the number is match the bingo card and meets one of the winning condition it is stored in an array
 #First array that meets one of the winning conditions will return the final num in the array
+#Matthews
 def playGame(card, callList):
     result = []
     for i in callList:
