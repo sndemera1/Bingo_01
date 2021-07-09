@@ -27,6 +27,7 @@ call = column(1, 76)
 #Open text file
 f = open('sample.txt', 'w')
 
+#Writing in each of the individual numbers of the bingo card and call list into a txt file
 x = 0
 while x <= 4:
     if x == 2:
@@ -69,7 +70,7 @@ callList = []
 for i in fr.read().split():
     num.append(int(i))
 
-
+#function that puts bingo card into 2d array
 def makeCard(x, y, z):
     for i in range(x, y):
         card[z].append(num[i])
@@ -83,7 +84,8 @@ makeCard(20, 25, 4)
 
 for i in range(25, 100):
     callList.append(num[i])
-
+#function goes through all numbers in call list, if the the number is match the bingo card and meets one of the winning condition it is stored in an array
+#First array that meets one of the winning conditions will return the final num in the array
 def playGame(card, callList):
     result = []
     for i in callList:
@@ -108,7 +110,7 @@ def playGame(card, callList):
         y = 4
         z = 0
         for x in range(0, 5):
-            if card[0][x] == w:
+            if card[0][x] == w:                   #First four conditions are for the columns
                 ans1.append(card[0][x])
                 if len(ans1) == 5:
                     return ans1[4]
@@ -128,7 +130,7 @@ def playGame(card, callList):
                 ans5.append(card[4][x])
                 if len(ans5) == 5:
                     return ans5[4]
-            if card[x][0] == w:
+            if card[x][0] == w:                 #Next four conditions are for the rows
                 ans6.append(card[x][0])
                 if len(ans6) == 5:
                     return ans6[4]
@@ -148,7 +150,7 @@ def playGame(card, callList):
                 ans10.append(card[x][4])
                 if len(ans10) == 5:
                     return ans10[4]
-            if card[x][x] == w:
+            if card[x][x] == w:                #Final 3 are for the diagnoal winning condition and the four corners winning condition.
                 ans11.append(card[x][x])
                 if len(ans11) == 4:
                     return ans11[3]
